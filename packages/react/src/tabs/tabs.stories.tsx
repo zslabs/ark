@@ -1,25 +1,28 @@
 import type { Meta } from '@storybook/react'
 import { useState } from 'react'
 import { TabContent, TabIndicator, TabList, Tabs, TabTrigger } from '.'
+import { Lazy } from '../lazy'
 import './tabs.css'
 
 type TabContentType = typeof TabContent
 
 const meta: Meta<TabContentType> = {
-  title: 'TabContent',
+  title: 'Tabs',
   component: TabContent,
 }
 
 export default meta
 
 export const Basic = () => (
-  <Tabs>
+  <Tabs defaultValue="vue">
     <TabList>
       <TabTrigger value="react">React</TabTrigger>
       <TabTrigger value="vue">Vue</TabTrigger>
       <TabTrigger value="solid">Solid</TabTrigger>
     </TabList>
-    <TabContent value="react">React Content</TabContent>
+    <TabContent value="react">
+      <Lazy>React Content</Lazy>
+    </TabContent>
     <TabContent value="vue">Vue Content</TabContent>
     <TabContent value="solid">Solid Content</TabContent>
   </Tabs>
