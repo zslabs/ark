@@ -1,6 +1,10 @@
 import type { Meta } from '@storybook/react'
 import { useState } from 'react'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '.'
+import { Presence, type PresenceProps } from '../presence'
+import type { Optional } from '../types'
+import { useAccordionItemContext } from './accordion-item-context'
+import './accordion.css'
 
 type AccordionType = typeof Accordion
 
@@ -19,6 +23,35 @@ export const Basic = () => {
         <AccordionItem key={id} value={item}>
           <AccordionTrigger>{item} trigger</AccordionTrigger>
           <AccordionContent>{item} content</AccordionContent>
+        </AccordionItem>
+      ))}
+    </Accordion>
+  )
+}
+
+type AccordionContentPresenceProps = Optional<PresenceProps, 'present'>
+
+const AccordionContentPresence = (props: AccordionContentPresenceProps) => {
+  const { present, ...rest } = props
+  const { isOpen } = useAccordionItemContext()
+
+  return <Presence present={present !== undefined ? present : isOpen} {...rest} />
+}
+
+export const Animated = () => {
+  const items = ['panel-1', 'panel-2', 'panel-3']
+  return (
+    <Accordion defaultValue="panel-1">
+      {items.map((item, id) => (
+        <AccordionItem key={id} value={item}>
+          <AccordionTrigger>{item} trigger</AccordionTrigger>
+          <AccordionContentPresence>
+            <AccordionContent>
+              <div data-scope="accordion" data-part="content-presence">
+                {item} content
+              </div>
+            </AccordionContent>
+          </AccordionContentPresence>
         </AccordionItem>
       ))}
     </Accordion>

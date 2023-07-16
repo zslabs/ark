@@ -1,0 +1,33 @@
+@keyframes collapse {
+  from {
+    grid-template-rows: auto 1fr;
+  }
+  to {
+    grid-template-rows: auto 0fr;
+  }
+}
+@keyframes expand {
+  from {
+    grid-template-rows: auto 0fr;
+  }
+  to {
+    grid-template-rows: auto 1fr;
+  }
+}
+
+[data-scope='accordion'][data-part='content']:not([hidden]) {
+  display: grid;
+}
+
+[data-scope='accordion'][data-part='content'][data-state='open'] {
+  animation: expand 0.2s ease-in-out;
+}
+
+[data-scope='accordion'][data-part='content'][data-state='closed'] {
+  animation: collapse 0.1s ease-in-out;
+}
+
+[data-scope='accordion'][data-part='content-presence'] {
+  grid-row-start: 2;
+  min-height: 0;
+}
