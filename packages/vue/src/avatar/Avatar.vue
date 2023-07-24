@@ -5,9 +5,8 @@ import { AvatarProvider } from './avatar-context'
 import { useAvatar } from './use-avatar'
 import { computed, useAttrs } from 'vue'
 import { mergeProps } from '@zag-js/vue'
-import type { Optional } from '../types'
 
-defineProps<Optional<avatar.Context, 'id'>>()
+defineProps<avatar.PublicApi>()
 
 const attrs = useAttrs()
 const api = useAvatar()
