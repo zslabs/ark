@@ -4,7 +4,7 @@ import '../avatar.css'
 </script>
 
 <template>
-  <Avatar @error="() => console.log('error')" @load="() => console.log('loaded')">
+  <Avatar id="123">
     <AvatarFallback>PA</AvatarFallback>
     <AvatarImage src="https://i.pravatar.cc/300" alt="avatar" />
   </Avatar>

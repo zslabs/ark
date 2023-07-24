@@ -10,7 +10,7 @@ import { computed, useAttrs } from 'vue'
 import { ark, type HTMLArkProps } from '../factory'
 import { useAvatarContext } from './avatar-context'
 
-const props = defineProps<AvatarImageProps>()
+defineProps<AvatarImageProps>()
 
 const api = useAvatarContext()
 const attrs = useAttrs()
@@ -20,6 +20,6 @@ const imageProps = computed(() => mergeProps(api.value.imageProps, attrs))
 
 <template>
   <ark.img v-bind="imageProps">
-    <slot />
+    <slot></slot>
   </ark.img>
 </template>
