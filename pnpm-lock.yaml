@@ -479,6 +479,9 @@ importers:
       '@zag-js/anatomy':
         specifier: 0.13.0
         version: 0.13.0
+      '@zag-js/avatar':
+        specifier: 0.13.0
+        version: 0.13.0
       '@zag-js/carousel':
         specifier: 0.13.0
         version: 0.13.0

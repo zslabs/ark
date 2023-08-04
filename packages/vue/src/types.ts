@@ -22,4 +22,11 @@ export type VueProps<T> = {
   }
 }
 
-export {}
+export type EnsureKeys<
+  ExpectedKeys extends (keyof Target)[],
+  Target,
+> = ExpectedKeys extends (keyof Target)[]
+  ? [keyof Target] extends [ExpectedKeys[number]]
+    ? unknown
+    : `Missing required keys: ${Exclude<keyof Target, ExpectedKeys[number]>}`
+  : never
