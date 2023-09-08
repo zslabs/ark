@@ -1,20 +1,19 @@
 import { defineComponent } from 'vue'
 import { ark, type HTMLArkProps } from '../factory'
-import { getValidChildren, type ComponentWithProps } from '../utils'
+import { getValidChildren } from '../utils'
 import { useRadioContext } from './radio-context'
 import { useRadioGroupContext } from './radio-group-context'
 
 export type RadioLabelProps = HTMLArkProps<'span'>
 
-export const RadioLabel: ComponentWithProps<RadioLabelProps> = defineComponent({
+export const RadioLabel = defineComponent({
   name: 'RadioLabel',
   setup(_, { slots, attrs }) {
-    const groupApi = useRadioGroupContext()
-
-    const api = useRadioContext()
+    const api = useRadioGroupContext()
+    const radioProps = useRadioContext()
 
     return () => (
-      <ark.span {...groupApi.value.getRadioLabelProps(api)} {...attrs}>
+      <ark.span {...api.value.getRadioLabelProps(radioProps)} {...attrs}>
         {() => getValidChildren(slots)}
       </ark.span>
     )
